@@ -5,7 +5,7 @@
  * Plugin URI: https://www.importwp.com
  * Description: Allow Import WP to import Content Egg Offers.
  * Author: James Collings <james@jclabs.co.uk>
- * Version: 0.0.1 
+ * Version: 0.0.2 
  * Author URI: https://www.importwp.com
  * Network: True
  */

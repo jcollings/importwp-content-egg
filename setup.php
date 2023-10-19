@@ -36,7 +36,7 @@ iwp_register_importer_addon('Content Egg', 'iwp-content-egg', function (AddonInt
             return $carry;
         }, []);
 
-        $panel->register_field('Offer Id', 'uniqie_id')
+        $panel->register_field('Offer Id', 'unique_id')
             ->save(false);
         $panel->register_field('Title', 'title', ['core' => true])
             ->save(false);
@@ -65,6 +65,8 @@ iwp_register_importer_addon('Content Egg', 'iwp-content-egg', function (AddonInt
             ->save(false);
         $panel->register_field('Description', 'description')
             ->save(false);
+        $panel->register_field('Offer Group', 'group')
+            ->save(false);
         $panel->register_field('Reset offers', 'reset')
             ->options([['label' => 'Yes', 'value' => 'yes'], ['label' => 'No', 'value' => 'no']])
             ->default('yes')
@@ -85,7 +87,7 @@ iwp_register_importer_addon('Content Egg', 'iwp-content-egg', function (AddonInt
 
             $entry = [
                 'title' => $meta['title']['value'],
-                'orig_url' => $meta['orig_url']['value'],
+                'orig_url' => trim($meta['orig_url']['value']),
                 'unique_id' => $unique_id,
                 'last_update' => time(),
                 'stock_status' => '',
@@ -140,6 +142,10 @@ iwp_register_importer_addon('Content Egg', 'iwp-content-egg', function (AddonInt
 
             if (isset($meta['priceXpath']['value'])) {
                 $entry['extra']['priceXpath'] = $meta['priceXpath']['value'];
+            }
+
+            if (isset($meta['group']['value'])) {
+                $entry['group'] = $meta['group']['value'];
             }
 
             if (empty($entry['extra'])) {
